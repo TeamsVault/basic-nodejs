@@ -1,10 +1,11 @@
-const https = require('https');
-const fs = require('fs');
-const https_options = {
- key: fs.readFileSync("/etc/letsencrypt/live/restapis.startupwavez.com/privkey.pem"),
- cert: fs.readFileSync("/etc/letsencrypt/live/restapis.startupwavez.com/fullchain.pem")
-};
-https.createServer(https_options, function (req, res) {
- res.writeHead(200);
- res.end("Welcome to Node.js HTTPS Server");
-}).listen(8443)
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
